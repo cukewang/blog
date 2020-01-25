@@ -2,8 +2,7 @@
   <div class="index_container">
     <section>
       <Crumbs />
-      <Artcard />
-      <Artcard />
+      <Artcard v-for="item in article" :key="item._id" :context="item" />
     </section>
     <aside>
       <Infocard />
@@ -17,12 +16,20 @@ import Artcard from "../components/index/articlecard";
 import Infocard from "../components/index/infocard";
 import Classcard from "../components/index/classcard";
 import Crumbs from "../components/index/crumbs";
+
 export default {
+  async asyncData({ $axios }) {
+    const res = await $axios.get("/article/getlist");
+    return { article: res.data.article };
+  },
   components: {
     Artcard,
     Infocard,
     Classcard,
     Crumbs
+  },
+  mounted() {
+    console.log(this.article);
   }
 };
 </script>

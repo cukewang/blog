@@ -1,3 +1,4 @@
+// server/interface/utils/passport.js
 // 引入 passprot ,然后引入本地策略，就是验证用户是否成立，最后引入操作模型。
 import passport from "koa-passport";
 import LocalStrategy from "passport-local";

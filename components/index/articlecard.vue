@@ -1,13 +1,13 @@
 <template>
   <div class="art_container" @click="godetails()">
     <article>
-      <h3>这个是标题</h3>
-      <p>这个是简介，现在省略三百字..</p>
+      <h3>{{ context.header }}</h3>
+      <p>{{ context.abstract }}</p>
       <div class="info">
         <ul>
-          <li class="date">2019-2-22</li>
-          <li class="browse_volume">阅读量(299)</li>
-          <li class="comment">评论(2)</li>
+          <li class="date">{{ date }}</li>
+          <li class="browse_volume">阅读量({{ context.pageview }})</li>
+          <li class="comment">评论({{ context.commoent.length }})</li>
         </ul>
       </div>
     </article>
@@ -15,10 +15,24 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
+  props: {
+    context: {
+      type: Object
+    }
+  },
+  mounted() {
+    console.log(this.context);
+  },
+  computed: {
+    date() {
+      return moment(this.context.date).format("YYYY-MM-DD HH:mm:ss");
+    }
+  },
   methods: {
     godetails() {
-      window.location.href = "/article?id=1";
+      window.location.href = "/article?id=" + this.context._id;
     }
   }
 };

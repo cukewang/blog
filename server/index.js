@@ -1,3 +1,4 @@
+// server/index.js
 const Koa = require("koa");
 const consola = require("consola");
 const { Nuxt, Builder } = require("nuxt");
@@ -9,6 +10,7 @@ import dbConfig from "./dbs/config";
 import Redis from "koa-redis";
 import session from "koa-generic-session";
 import users from "./interface/users";
+import article from "./interface/article";
 import passport from "./interface/utils/passport";
 
 const app = new Koa();
@@ -58,6 +60,7 @@ async function start() {
   );
   // 加载路由中间件
   app.use(users.routes()).use(users.allowedMethods());
+  app.use(article.routes()).use(article.allowedMethods());
 
   app.use(ctx => {
     ctx.status = 200;

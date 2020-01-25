@@ -28,13 +28,13 @@ router.post("/verify", async ctx => {
   //获得验证码的有效时间
   const saveExpire = await Store.hget(`nodemail:${username}`, "expire");
   //如果验证码的有效时间太短，就不能再发次发送。
-  //   if (saveExpire && new Date().getTime() - saveExpire < 0) {
-  //     ctx.body = {
-  //       code: -1,
-  //       msg: "验证请求过于频繁，1分钟内1次"
-  //     };
-  //     return false;
-  //   }
+  if (saveExpire && new Date().getTime() - saveExpire < 0) {
+    ctx.body = {
+      code: -1,
+      msg: "验证请求过于频繁，1分钟内1次"
+    };
+    return false;
+  }
   //然后用nodeMailer创建一个transport
   let transporter = nodeMailer.createTransport({
     // server名称
@@ -120,23 +120,10 @@ router.post("/signup", async ctx => {
   let nuser = await User.create({ username, password, email });
   console.log(nuser);
   if (nuser) {
-    // let res = await that.$axios.post("/users/signin", {
-    //   username,
-    //   password
-    // });
-
-    // if (res.code === 0) {
     ctx.body = {
       code: 0,
       msg: "注册成功"
     };
-    // } else {
-    //   ctx.body = {
-    //     code: -1,
-    //     msg: "注册失败",
-    //     user: res.data.user
-    //   };
-    // }
   } else {
     ctx.body = {
       code: -1,

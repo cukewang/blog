@@ -1,3 +1,4 @@
+//store/user.js
 const state = () => ({
   user: ""
 });
