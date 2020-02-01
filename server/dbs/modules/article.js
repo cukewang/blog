@@ -24,7 +24,13 @@ const ArticleSchema = new mongoose.Schema({
   // 发帖日期
   date: { type: Date, default: Date.now },
   // 评论
-  commoent: [{ username: String, context: String }],
+  commoent: [
+    {
+      username: String,
+      context: String,
+      data: { type: Date, default: Date.now }
+    }
+  ],
   // 浏览量
   pageview: { type: Number, default: 1 }
 });

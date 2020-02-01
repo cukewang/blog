@@ -1,12 +1,13 @@
 <template>
   <div class="index_container">
-    <section>
+    <section v-if="this.article.length != 0">
       <Crumbs />
       <Artcard v-for="item in article" :key="item._id" :context="item" />
     </section>
+    <section v-else style=" text-align: center;margin-top: 20px;">没有数据奥！</section>
     <aside>
-      <Infocard />
-      <Classcard />
+      <Infocard :content="articlemsg" />
+      <Classcard :content="classmsg" @getClassArticle="getClassArticle" />
     </aside>
   </div>
 </template>
@@ -20,7 +21,20 @@ import Crumbs from "../components/index/crumbs";
 export default {
   async asyncData({ $axios }) {
     const res = await $axios.get("/article/getlist");
-    return { article: res.data.article };
+    const res2 = await $axios.get("/article/articleclass");
+    const res3 = await $axios.get("/article/getclass");
+
+    return {
+      article: res.data.article,
+      articlemsg: res2.data,
+      classmsg: res3.data.articleClassnum
+    };
+
+    // return {
+    //   article: "",
+    //   articlemsg: "",
+    //   classmsg: ""
+    // };
   },
   components: {
     Artcard,
@@ -28,7 +42,24 @@ export default {
     Classcard,
     Crumbs
   },
-  mounted() {
+  methods: {
+    async getClassArticle(myclass) {
+      console.log(myclass);
+      const { status, data } = await this.$axios.get(
+        `/article/getclassarticle?artclass=${myclass} `
+      );
+      // console.log(status);
+      // console.log(data);
+      if (status == 200 && data) {
+        this.article = data.list;
+      } else {
+        console.log("搞错了");
+      }
+    }
+  },
+  async mounted() {
+    console.log(this.classmsg);
+    console.log(this.articlemsg);
     console.log(this.article);
   }
 };
@@ -41,6 +72,7 @@ export default {
   align-items: flex-start;
   position: relative;
   z-index: 1;
+
   section {
     flex: 1;
     min-width: 200px;

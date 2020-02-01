@@ -17,6 +17,10 @@ const UserSchema = new Schema({
   email: {
     type: String,
     require: true
+  },
+  manger: {
+    type: Number,
+    default: 0
   }
 });
 // 导出user模型

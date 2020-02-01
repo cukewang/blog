@@ -1,14 +1,14 @@
 <template>
   <div class="crumbs_container">
-    <span>我的随笔 ></span>
-    <span> 随笔目录</span>
+    <!-- <span>我的随笔 ></span>
+    <span>随笔目录</span>-->
   </div>
 </template>
 
 <script>
 export default {
   mounted() {
-    console.log(this.$store.state);
+    // console.log(this.$store.state);
   }
 };
 </script>

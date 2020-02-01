@@ -2,26 +2,44 @@
   <div class="class_container">
     <h3>随笔分类</h3>
     <ul>
-      <li>数据库(22)</li>
-      <li>vue(20)</li>
-      <li>css(12)</li>
-      <li>HTML(2)</li>
+      <li
+        v-for="item in content"
+        :key="item.name"
+        @click="goclass(item.name)"
+        class="pointer"
+      >{{ item.name }}({{ item.num }})</li>
     </ul>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    content: { type: Array }
+  },
+  methods: {
+    goclass(param) {
+      this.$emit("getClassArticle", param);
+    }
+  }
+};
 </script>
 
 <style lang="scss">
 .class_container {
-  background: #edf7fa;
+  background: #e3f5fa;
+
   padding: 10px;
   margin-top: 20px;
-  border: 1px solid #000000;
+  border-top: 3px solid #ffb677;
+
+  // background: #ffb677;
+
   ul {
     margin-top: 5px;
+    li {
+      cursor: pointer;
+    }
   }
 }
 </style>

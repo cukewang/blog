@@ -1,11 +1,11 @@
 <template>
   <div class="body1">
-    <div class="container animated slideInDown">
+    <div class="container">
       <header>
-        <Myheader :location="this.location" />
+        <Myheader :location="this.location" @getClassArticle="handle" />
       </header>
       <main class="main">
-        <nuxt />
+        <nuxt ref="nuxta" />
       </main>
       <footer>
         <Myfooter />
@@ -29,6 +29,17 @@ export default {
   },
   mounted() {
     this.location = window.location.href.split("/").pop();
+  },
+  methods: {
+    handle(e) {
+      console.log("default触发");
+      console.log(e);
+      console.log(this.$refs);
+      // if (this.$refs.nuxta.getClassArticle()) {
+      //   console.log("default内的if触发");
+      //   this.$refs.nuxta.getClassArticle(e);
+      // }
+    }
   }
 };
 </script>
@@ -37,16 +48,7 @@ export default {
 @import "@/assets/css/animate.css";
 html {
   height: 100%;
-  background: hsl(230, 33%, 53%);
-  // body {
-  //   height: 100%;
-  //   #__nuxt {
-  //     height: 100%;
-  //   }
-  //   #__layout {
-  //     height: 100%;
-  //   }
-  // }
+  background: #4f98ca;
 }
 * {
   font-family: "Times New Roman", Georgia, Serif;
@@ -57,9 +59,6 @@ html {
     list-style: none;
   }
   .body1 {
-    // background: #5f6caf;
-    // height: 100%;
-    //
     padding-bottom: 20px;
     .container {
       margin: 0 auto;
@@ -67,7 +66,7 @@ html {
       max-width: 1000px;
       background: #edf7fa;
       min-width: 400px;
-      box-shadow: 0px 1px 12px #555;
+      box-shadow: 0px 1px 12px #999;
     }
   }
 }

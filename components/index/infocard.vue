@@ -2,15 +2,21 @@
   <div class="info_card">
     <h3>博客信息</h3>
     <ul>
-      <li>随笔:65</li>
-      <li>评论:223</li>
-      <li>浏览量:2131</li>
+      <li>随笔:{{ content.articlenum }}</li>
+      <li>评论:{{ content.comment }}</li>
+      <li>浏览量:{{ content.pageview }}</li>
     </ul>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    content: {
+      type: Object
+    }
+  }
+};
 </script>
 
 <style lang="scss">
@@ -18,10 +24,13 @@ export default {};
   &:first-child {
     margin-top: 0px;
   }
-  background: #edf7fa;
+  background: #e3f5fa;
+
   margin-top: 20px;
   padding: 10px;
-  border: 1px solid #000000;
+  border-top: 3px solid #ffb677;
+  // background: #ffb677;
+
   ul {
     margin-top: 5px;
   }

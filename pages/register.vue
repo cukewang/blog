@@ -25,7 +25,8 @@
           @click="sendMsg"
           class="sendemail"
           :disabled="ruleForm.verifyflag"
-        >{{ ruleForm.verifymsg }}</el-button>
+          >{{ ruleForm.verifymsg }}</el-button
+        >
       </el-form-item>
 
       <el-form-item label="验证码" prop="code">
@@ -153,7 +154,9 @@ export default {
           if (status == 200 && data) {
             console.log(data.msg);
             alert("注册成功！");
-            // window.location.href = "/";
+            window.location.href = "/login";
+          } else {
+            alert("注册失败");
           }
         }
       });
