@@ -8,8 +8,7 @@
       maxlength="20"
       class="input0"
       :disabled="islogin"
-      >></el-input
-    >
+    >></el-input>
     <el-input
       type="textarea"
       :autosize="{ minRows: 4, maxRows: 8 }"
@@ -54,7 +53,7 @@ export default {
       });
 
       if (status == 200 && data) {
-        // console.log(data);
+        // // console(data);
         location.reload(true);
       }
     }
@@ -64,10 +63,10 @@ export default {
       this.islogin = true;
       this.username = this.$store.state.user.user.username;
     } else {
-      this.username = "匿名老铁";
+      this.username = "";
     }
 
-    // console.log(this.$store.state.user.user.username);
+    // // console(this.$store.state.user.user.username);
     window.location.href
       .split("/")
       .pop()

@@ -152,7 +152,7 @@ export default {
           });
 
           if (status == 200 && data) {
-            console.log(data.msg);
+            // console(data.msg);
             alert("注册成功！");
             window.location.href = "/login";
           } else {

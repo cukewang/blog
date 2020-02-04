@@ -7,7 +7,9 @@
         :key="item.name"
         @click="goclass(item.name)"
         class="pointer"
-      >{{ item.name }}({{ item.num }})</li>
+      >
+        {{ item.name }}({{ item.num }})
+      </li>
     </ul>
   </div>
 </template>
@@ -27,11 +29,19 @@ export default {
 
 <style lang="scss">
 .class_container {
-  background: #e3f5fa;
+  // border-radius: 10px;
+  // background: #fff;
+  // box-shadow: 0px 1px 2px #c4c4c4;
+
+  h3 {
+    line-height: 40px;
+    border-bottom: 1px solid #000;
+  }
+  // background: #e3f5fa;
 
   padding: 10px;
   margin-top: 20px;
-  border-top: 3px solid #ffb677;
+  // border-top: 3px solid #ffb677;
 
   // background: #ffb677;
 

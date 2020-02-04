@@ -12,6 +12,7 @@ import session from "koa-generic-session";
 import users from "./interface/users";
 import article from "./interface/article";
 import passport from "./interface/utils/passport";
+import message from "./interface/message";
 
 const app = new Koa();
 
@@ -61,6 +62,7 @@ async function start() {
   // 加载路由中间件
   app.use(users.routes()).use(users.allowedMethods());
   app.use(article.routes()).use(article.allowedMethods());
+  app.use(message.routes()).use(message.allowedMethods());
 
   app.use(ctx => {
     ctx.status = 200;

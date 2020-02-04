@@ -61,7 +61,7 @@ router.post("/verify", async ctx => {
   };
   await transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      return console.log(error);
+      return; // console(error);
     } else {
       // 当邮件发送成功了，就将数据保存起来，以后可以拿来用。
       Store.hmset(
@@ -118,7 +118,7 @@ router.post("/signup", async ctx => {
     return;
   }
   let nuser = await User.create({ username, password, email });
-  console.log(nuser);
+  // console(nuser);
   if (nuser) {
     ctx.body = {
       code: 0,

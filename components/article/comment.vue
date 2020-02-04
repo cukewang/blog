@@ -36,7 +36,7 @@ export default {
     } else {
       this.context = [];
     }
-    console.log(this.context);
+    // console(this.context);
   },
   computed: {
     date() {

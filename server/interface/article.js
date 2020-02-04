@@ -8,7 +8,7 @@ let router = new Router({ prefix: "/article" });
 // 获取文章内容
 router.get("/getcontext", async ctx => {
   const sid = mongoose.Types.ObjectId(ctx.query.id);
-  // console.log(sid);
+  // // console(sid);
   const result = await articleModel.findById(sid);
   if (result) {
     ctx.body = {
@@ -46,13 +46,13 @@ router.get("/getlist", async ctx => {
 // 获取分类文章列表
 router.get("/getclassarticle", async ctx => {
   const artclass = ctx.query.artclass;
-  console.log(artclass);
+  // console(artclass);
   const res = await articleModel
     .find({
       class: { $elemMatch: { $eq: artclass } }
     })
     .sort({ _id: -1 });
-  console.log(res);
+  // console(res);
   if (res) {
     ctx.body = {
       code: 0,
@@ -143,10 +143,42 @@ router.post("/upload", async ctx => {
     date
   });
   if (state) {
-    console.log(state);
+    // console(state);
     ctx.body = {
       code: 0,
-      msg: "成功了兄弟！"
+      msg: "成功了兄弟！",
+      id: state._id
+    };
+  }
+});
+
+// 搜索文章
+router.get("/search", async ctx => {
+  const keyword = ctx.query.keyword;
+  // console(keyword);
+  let state = await articleModel.aggregate([
+    // { $unwind: "$class" },
+
+    {
+      $match: {
+        $or: [
+          { class: { $elemMatch: { $regex: keyword } } },
+          { header: { $regex: keyword } },
+          { abstract: { $regex: keyword } }
+          // { context: { $regex: keyword } }
+        ]
+      }
+    }
+  ]);
+  if (state) {
+    ctx.body = {
+      code: 0,
+      article: state
+    };
+  } else {
+    ctx.body = {
+      code: -1,
+      article: []
     };
   }
 });
@@ -211,7 +243,7 @@ router.post("/commit", async ctx => {
   );
 
   if (state) {
-    console.log(state);
+    // console(state);
     ctx.body = {
       code: 0,
       msg: "操作成功！"
@@ -232,7 +264,7 @@ router.post("/pageview", async ctx => {
     $inc: { pageview: 1 }
   });
   if (state) {
-    console.log(state);
+    // console(state);
     ctx.body = {
       code: 0,
       msg: "操作成功！"

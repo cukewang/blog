@@ -8,9 +8,7 @@
       label-width="100px"
       size="small"
     >
-      <div class="tips">
-        <i class="el-icon-bell"></i> 不登录不影响游客任何操作
-      </div>
+      <div class="tips">tips:你不登录也没啥事</div>
       <el-form-item label="用户名" prop="name">
         <el-input v-model="ruleForm.name"></el-input>
       </el-form-item>

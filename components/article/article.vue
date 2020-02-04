@@ -1,6 +1,6 @@
 <template>
   <div class="article_container">
-    <h1>{{ context.header }}</h1>
+    <h1 class="title">{{ context.header }}</h1>
     <div class="info">
       <span class="item">发布时间:{{ commentDate }}</span>
       <span class="item">浏览量:{{ context.pageview }}</span>
@@ -40,7 +40,7 @@ export default {
   },
   mounted() {
     hljs.initHighlightingOnLoad();
-    // console.log(this.context);
+    // // console(this.context);
   },
   methods: {
     edit() {
@@ -54,9 +54,9 @@ export default {
           `/article/delete?id=${this.$route.query.id}`
         );
         if (status == 200 && data) {
-          console.log(data);
+          // console(data);
         } else {
-          console.log("操作失败");
+          // console("操作失败");
         }
       }
     }
@@ -66,6 +66,14 @@ export default {
 
 <style lang="scss">
 .article_container {
+  overflow: hidden;
+  li {
+    margin-left: 35px;
+    list-style: disc;
+  }
+  .title {
+    text-align: center;
+  }
   img {
     max-width: 100%;
     margin-top: 10px;
@@ -75,7 +83,7 @@ export default {
   code {
     // border-radius: 20px;
     display: block;
-    background: #eee;
+    background: #fff;
     margin: 10px 100px 10px 0px;
     border: 1px solid #ccc;
     padding: 20px;
@@ -85,9 +93,10 @@ export default {
     margin-right: 10px;
   }
   h1 {
-    margin: 10px 0 5px;
+    margin: 30px 0 5px;
   }
   .info {
+    text-align: center;
     .item {
       margin-right: 5px;
       line-height: 35px;

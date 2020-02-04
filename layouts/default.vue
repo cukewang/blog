@@ -1,9 +1,9 @@
 <template>
   <div class="body1">
+    <header class="topheader">
+      <Myheader :location="this.location" @getClassArticle="handle" />
+    </header>
     <div class="container">
-      <header>
-        <Myheader :location="this.location" @getClassArticle="handle" />
-      </header>
       <main class="main">
         <nuxt ref="nuxta" />
       </main>
@@ -31,15 +31,7 @@ export default {
     this.location = window.location.href.split("/").pop();
   },
   methods: {
-    handle(e) {
-      console.log("default触发");
-      console.log(e);
-      console.log(this.$refs);
-      // if (this.$refs.nuxta.getClassArticle()) {
-      //   console.log("default内的if触发");
-      //   this.$refs.nuxta.getClassArticle(e);
-      // }
-    }
+    handle(e) {}
   }
 };
 </script>
@@ -48,7 +40,7 @@ export default {
 @import "@/assets/css/animate.css";
 html {
   height: 100%;
-  background: #4f98ca;
+  background: #f7f7f7;
 }
 * {
   font-family: "Times New Roman", Georgia, Serif;
@@ -60,13 +52,18 @@ html {
   }
   .body1 {
     padding-bottom: 20px;
+    .topheader {
+      position: sticky;
+      top: 0px;
+      z-index: 100000;
+    }
     .container {
       margin: 0 auto;
       flex: 0 1 auto;
       max-width: 1000px;
-      background: #edf7fa;
+      background: #f7f7f7;
       min-width: 400px;
-      box-shadow: 0px 1px 12px #999;
+      // box-shadow: 0px 1px 12px #999;
     }
   }
 }

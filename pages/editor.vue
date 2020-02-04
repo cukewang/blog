@@ -86,15 +86,15 @@ export default {
   async mounted() {
     if (this.$store.state.user.user != "") {
       if (this.$store.state.user.user.manger == 1) {
+        const { status: status0, data: data0 } = await this.$axios.get(
+          "/article/getclass"
+        );
+        data0.articleClassnum.forEach(element => {
+          element.value = element.name;
+          element.label = element.name;
+        });
+        this.options = data0.articleClassnum;
         if (this.$route.query.article) {
-          const { status: status0, data: data0 } = await this.$axios.get(
-            "/article/getclass"
-          );
-          data0.articleClassnum.forEach(element => {
-            element.value = element.name;
-            element.label = element.name;
-          });
-          this.options = data0.articleClassnum;
           const { status, data } = await this.$axios.get(
             `/article/getcontext?id=${this.$route.query.article}`
           );
@@ -130,34 +130,37 @@ export default {
       });
 
       if (status == 200 && data) {
-        console.log(this.data);
+        alert("更新成功");
+        // // console(this.$route.query);
+        window.location.href = `article?id=${this.$route.query.article}`;
       } else {
         alert("更新失败");
       }
     },
     change(val) {
-      // console.log(val);
+      // // console(val);
     },
     send() {
       alert(this.detail);
     },
     change2(e) {
-      console.log(e);
+      // console(e);
     },
-    message() {
-      this.$axios
-        .post("/article/upload", {
-          header: this.article.header,
-          class: this.article.class,
-          context: this.article.context,
-          abstract: this.article.abstract,
-          date: new Date(),
-          comment: "",
-          pageview: 1
-        })
-        .then(res => {
-          console.log(res);
-        });
+    async message() {
+      const { status, data } = await this.$axios.post("/article/upload", {
+        header: this.article.header,
+        class: this.article.class,
+        context: this.article.context,
+        abstract: this.article.abstract,
+        date: new Date(),
+        comment: "",
+        pageview: 1
+      });
+      if (status == 200 && data.code == 0) {
+        alert("发布成功");
+        // console(data.id);
+        window.location.href = `article?id=${data.id}`;
+      }
     }
   }
 };

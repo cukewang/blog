@@ -46,6 +46,7 @@ export default {
   },
   mounted() {
     this.seteditor();
+    // this.editor.customConfig.zIndex = 0;
     this.editor.txt.html(this.value);
   },
   methods: {
@@ -108,25 +109,30 @@ export default {
         this.$emit("change", this.info_); // 将内容同步到父组件中
       };
       // 创建富文本编辑器
+      this.editor.customConfig.zIndex = 1;
       this.editor.create();
     }
   }
 };
 </script>
 
-<style lang="css">
+<style lang="scss">
 .editor {
   width: 100%;
-  margin: 0 auto;
   position: relative;
-  z-index: 0;
   background: #fff;
 }
+
 .toolbar {
   border: 1px solid #ccc;
+  position: sticky;
+  top: 60px;
+  background: #fff;
+  z-index: 99999;
 }
 .text {
   border: 1px solid #ccc;
   min-height: 500px;
+  background: #fff;
 }
 </style>
