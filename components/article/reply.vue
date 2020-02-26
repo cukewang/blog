@@ -1,17 +1,16 @@
 <template>
   <div class="reply_container">
-    <h2 v-if="this.location == '评论'">发表你的评论:</h2>
-    <h2 v-if="this.location == '留言'">发表你的留言:</h2>
+    <h2>发表你的评论:</h2>
     <el-input
       placeholder="请输入你的用户名"
       v-model="username"
       maxlength="20"
       class="input0"
       :disabled="islogin"
-    >></el-input>
+      >></el-input
+    >
     <el-input
       type="textarea"
-      :autosize="{ minRows: 4, maxRows: 8 }"
       placeholder="请输入内容"
       v-model="textarea"
       maxlength="200"
@@ -44,7 +43,9 @@ export default {
   },
   methods: {
     async submit() {
-      // alert("奥利给!");
+      if (this.username == "") {
+        this.username = "忘记写名字的老铁";
+      }
       const { status, data } = await this.$axios.post("article/commit", {
         id: this.$route.query.id,
         username: this.username,

@@ -1,11 +1,10 @@
 <template>
   <div class="comment_container">
-    <h2 v-if="this.location == '评论'">评论({{ context.length }}条)</h2>
-    <h2 v-if="this.location == '留言'">留言({{ context.length }}条)</h2>
+    <h2>评论({{ context.length }}条)</h2>
     <div class="comment_card" v-for="i in context" :key="i._id">
       <h3 class="name">#{{ i.num }} {{ i.username }} 说：</h3>
       <!-- <p>{{ i.context }}</p> -->
-      <p v-html="i.context"></p>
+      <div v-html="i.context" style="margin:10px 0px;"></div>
       <span style="margin-top: 10px;">{{ i.data }}</span>
       <span @click="quote(i)" class="quote">#引用</span>
     </div>
