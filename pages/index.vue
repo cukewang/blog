@@ -5,13 +5,11 @@
       <section v-if="this.article.length != 0">
         <Artcard v-for="item in article" :key="item._id" :context="item" />
       </section>
-      <section v-else style=" text-align: center;margin-top: 20px;">
-        没有数据奥！
-      </section>
+      <section v-else style=" text-align: center;margin-top: 20px;">没有数据奥！</section>
       <!-- <aside>
         <Infocard :content="articlemsg" />
         <Classcard :content="classmsg" @getClassArticle="getClassArticle" />
-      </aside> -->
+      </aside>-->
     </div>
   </div>
 </template>
@@ -71,8 +69,10 @@ export default {
 
 <style lang="scss">
 .index_container {
-  margin: 0 50px;
+  // width: 100%;
+  margin: 0 10px;
   z-index: 1;
+  box-sizing: border-box;
   .box {
     margin-top: 30px;
     display: flex;

@@ -46,7 +46,7 @@ export default {
 
 <style lang="scss">
 .articlepage_container {
-  margin: 0 50px;
+  margin: 0 10px;
   p {
     margin: 16px 0;
   }

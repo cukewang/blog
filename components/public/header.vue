@@ -17,7 +17,7 @@
           <a href="/register" class="register">注册</a>
         </div>
         <div class="log" v-else>
-          <a href="#">欢迎您 {{ hasloged.username }}</a>
+          <span href="#">欢迎您 {{ hasloged.username }}</span>
           <a href="#" @click="logout()">退出登录</a>
         </div>
       </div>
@@ -38,10 +38,12 @@
                 v-for="item in myclass"
                 :key="item.name"
                 @click="go(item.name)"
-              >{{item.name}}</div>
+              >
+                {{ item.name }}
+              </div>
             </div>
           </li>
-          <li class="nav_item">
+          <li class="nav_item" v-if="ismanger">
             <a href="/editor">新随笔</a>
           </li>
           <li class="nav_item">
@@ -50,6 +52,7 @@
         </ul>
       </div>
     </header>
+    <div class="button"></div>
   </div>
 </template>
 
@@ -71,6 +74,9 @@ export default {
     },
     hasloged() {
       return this.$store.state.user.user;
+    },
+    ismanger() {
+      return this.$store.state.user.user.manger == 1 ? true : false;
     }
   },
   methods: {
@@ -100,6 +106,35 @@ export default {
 </script>
 
 <style lang="scss">
+@media only screen and (max-width: 1200px) {
+}
+@media only screen and (max-width: 980px) {
+  .header_container {
+    .header_top {
+      .left {
+        // background: red;
+        display: none;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 800px) {
+  .header_container {
+    .header_top {
+      .left {
+        // background: red;
+        display: none;
+      }
+      .header_user {
+        visibility: hidden;
+      }
+    }
+    .header_nav {
+      // width: 300px;
+      // padding: 20px;
+    }
+  }
+}
 .header_container {
   background: #fff;
   border-bottom: 1px solid #aaa;

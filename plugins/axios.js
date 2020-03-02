@@ -1,12 +1,3 @@
 export default function({ $axios, redirect }) {
-  $axios.onRequest(config => {
-    // console("Making request to " + config.url);
-  });
-
-  $axios.onError(error => {
-    const code = parseInt(error.response && error.response.status);
-    if (code === 400) {
-      redirect("/400");
-    }
-  });
+  $axios.setBaseURL("http://39.97.248.252");
 }

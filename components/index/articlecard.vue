@@ -48,6 +48,17 @@ export default {
 </script>
 
 <style lang="scss">
+@media only screen and (min-width: 600px) {
+  .info {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .info {
+    display: block;
+  }
+}
 .art_container {
   // border-radius: 10px;
   // background: #fff;
@@ -81,8 +92,7 @@ export default {
     .info {
       margin-top: 10px;
       // text-align: right;
-      display: flex;
-      justify-content: space-between;
+
       vertical-align: middle;
       .small {
         font-size: 15px;

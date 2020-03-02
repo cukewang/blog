@@ -4,7 +4,8 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || "",
+    // title: process.env.npm_package_name || "",
+    title: "wzr's blog",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -29,6 +30,7 @@ module.exports = {
    ** Plugins to load before mounting the App
    */
   plugins: ["@/plugins/element-ui", "@/plugins/axios"],
+
   /*
    ** Nuxt.js dev-modules
    */
@@ -36,10 +38,9 @@ module.exports = {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/axios"],
-  /*
-   ** Build configuration
-   */
+
+  modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
+
   build: {
     transpile: [/^element-ui/],
     /*

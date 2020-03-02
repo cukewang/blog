@@ -41,6 +41,7 @@ export default {
 html {
   height: 100%;
   background: #f7f7f7;
+  min-width: 300px;
 }
 * {
   font-family: "Times New Roman", Georgia, Serif;
@@ -62,7 +63,7 @@ html {
       flex: 0 1 auto;
       max-width: 1000px;
       background: #f7f7f7;
-      min-width: 400px;
+      // min-width: 400px;
       // box-shadow: 0px 1px 12px #999;
     }
   }

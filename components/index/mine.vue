@@ -11,8 +11,9 @@ export default {};
 
 <style lang="scss">
 .mine_container {
-  padding: 30px;
-  margin-top: 30px;
+  margin: 30px;
+  box-sizing: border-box;
+
   text-align: center;
   .name {
     font-size: 40px;

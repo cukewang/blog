@@ -6,16 +6,16 @@
       </div>
       <div class="content">
         <div class="left">
-          <p class="name">王梓瑞</p>
-          <p class="content">前端爱好者</p>
-          <p
-            class="content2"
-          >水平不高，但好在一直在学，博客供记录学习之用。博客项目长期更新，时不时也会根据需要添加新功能。博客前后端纯手撸，有bug或者不完善的地方，欢迎下方留言建议。</p>
+          <p class="name">wzr</p>
+          <p class="content">高级切图工程师</p>
+          <p class="content2">
+            水平不高，但好在一直在学，博客供记录学习之用。博客项目长期更新，时不时也会根据需要添加新功能。博客前后端纯手撸，有bug或者不完善的地方，欢迎下方留言建议。
+          </p>
         </div>
       </div>
     </header>
     <div class="comment">
-      <h2>留言板(20)</h2>
+      <h2>留言板</h2>
       <div class="reply_container">
         <h3>发表你的留言:</h3>
         <div class="box">
@@ -26,8 +26,18 @@
             class="input0"
             :disabled="islogin"
           ></el-input>
-          <el-input placeholder="请输入您的邮箱" v-model="input.email" maxlength="20" class="input0"></el-input>
-          <el-input placeholder="请输入您的个人网站" v-model="input.web" maxlength="20" class="input0"></el-input>
+          <el-input
+            placeholder="请输入您的邮箱"
+            v-model="input.email"
+            maxlength="20"
+            class="input0"
+          ></el-input>
+          <el-input
+            placeholder="请输入您的个人网站"
+            v-model="input.web"
+            maxlength="20"
+            class="input0"
+          ></el-input>
         </div>
         <el-input
           type="textarea"
@@ -43,29 +53,33 @@
         </div>
         <div v-else>
           <el-button @click="reply" class="button">回复</el-button>
-          <el-button @click="issubmit = true,replyid=''" class="button">取消</el-button>
+          <el-button @click="(issubmit = true), (replyid = '')" class="button"
+            >取消</el-button
+          >
         </div>
       </div>
       <div class="list" v-for="item in content" :key="item._id">
-        <h3>{{item.username}}说:</h3>
-        <p class="content">{{item.content}}</p>
+        <h3>{{ item.username }}说:</h3>
+        <p class="content">{{ item.content }}</p>
         <p class="date">
           <!-- 2017-2-23 10:22 -->
-          {{formdate(item.date)}}
-          <span class="reply" @click="goreply(item._id,null)">回复</span>
+          {{ formdate(item.date) }}
+          <span class="reply" @click="goreply(item._id, null)">回复</span>
         </p>
         <div class="comments" v-for="iitem in item.comments" :key="iitem.date">
           <p class="content" v-if="iitem.replyname">
-            <strong>{{iitem.username}} 回复 {{iitem.replyname}}</strong>
-            ：{{iitem.content}}
+            <strong>{{ iitem.username }} 回复 {{ iitem.replyname }}</strong>
+            ：{{ iitem.content }}
           </p>
           <p class="content" v-else>
-            <strong>{{iitem.username}}</strong>
-            ：{{iitem.content}}
+            <strong>{{ iitem.username }}</strong>
+            ：{{ iitem.content }}
           </p>
           <div class="date">
-            {{formdate(iitem.date)}}
-            <span class="reply" @click="goreply(item._id,iitem.username)">回复</span>
+            {{ formdate(iitem.date) }}
+            <span class="reply" @click="goreply(item._id, iitem.username)"
+              >回复</span
+            >
           </div>
         </div>
       </div>
@@ -152,11 +166,46 @@ export default {
 </script>
 
 <style lang="scss">
+@media only screen and (min-width: 600px) {
+  .me_container {
+    .mine {
+      display: flex;
+      justify-content: space-between;
+      .content {
+        display: block;
+      }
+    }
+    .comment {
+      .box {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 600px) {
+  .me_container {
+    .mine {
+      display: block;
+      // background: red;
+      text-align: center;
+      .content {
+        display: block;
+      }
+    }
+    .comment {
+      .box {
+        display: block;
+        .input0 {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
 .me_container {
-  margin: 60px 50px;
+  margin: 60px 20px;
   .mine {
-    display: flex;
-    justify-content: space-between;
     img {
       width: 200px;
       height: auto;
@@ -187,8 +236,6 @@ export default {
     }
     .reply_container {
       .box {
-        display: flex;
-        justify-content: space-between;
         margin-top: 10px;
         .el-input__inner {
           border-radius: 0px;
@@ -213,10 +260,10 @@ export default {
       margin-top: 10px;
       margin-bottom: 10px;
     }
-    .content {
-      // padding: 10px 0px;
-      // margin-top: 10px;
-    }
+    // .content {
+    //   // padding: 10px 0px;
+    //   // margin-top: 10px;
+    // }
     .comments {
       padding: 5px 0px;
       margin-left: 20px;
