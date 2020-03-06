@@ -69,7 +69,7 @@ export default {
   overflow: hidden;
   li {
     margin-left: 35px;
-    list-style: disc;
+    // list-style: disc;
   }
   .title {
     text-align: center;
@@ -80,21 +80,33 @@ export default {
     height: auto;
     margin-bottom: 10px;
   }
+  pre {
+    code {
+      // border-radius: 20px;
+      display: block;
+      background: #fff;
+      margin: 10px 0px 10px 0px;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+    }
+  }
   code {
-    // border-radius: 20px;
-    display: block;
-    background: #fff;
-    margin: 10px 100px 10px 0px;
-    border: 1px solid #ccc;
-    padding: 20px;
+  }
+  p {
+    code {
+      color: #f665a9;
+      padding: 2px 10px;
+      background: rgb(238, 255, 254);
+      border-radius: 10px;
+      overflow: hidden;
+    }
   }
   .pointer {
     cursor: pointer;
     margin-right: 10px;
   }
-  h1 {
-    margin: 30px 0 5px;
-  }
+
   .info {
     text-align: center;
     .item {
@@ -104,6 +116,27 @@ export default {
   }
   .control {
     margin-top: 10px;
+  }
+  margin: 0 10px;
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin: 20px 0px;
+  }
+  p {
+    margin: 16px 0;
+  }
+  // code {
+  //   display: inline-block;
+  // }
+
+  blockquote {
+    margin-left: 10px;
+    background: #fff;
+    border-left: 5px solid #b7e1ec;
+    padding: 5px 10px;
+    // line-height: 5px;
   }
 }
 </style>

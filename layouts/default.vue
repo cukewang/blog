@@ -49,7 +49,7 @@ html {
   padding: 0;
   ul,
   li {
-    list-style: none;
+    // list-style: none;
   }
   .body1 {
     padding-bottom: 20px;

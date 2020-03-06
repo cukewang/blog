@@ -32,7 +32,7 @@ export default {
   methods: {
     upload(e) {
       this.quote = `<blockquote>${e.num}楼的${e.username}说: ${e.context}  </blockquote>
-`;
+      `;
       // console(this.quote);
     }
   },
@@ -46,9 +46,5 @@ export default {
 
 <style lang="scss">
 .articlepage_container {
-  margin: 0 10px;
-  p {
-    margin: 16px 0;
-  }
 }
 </style>
